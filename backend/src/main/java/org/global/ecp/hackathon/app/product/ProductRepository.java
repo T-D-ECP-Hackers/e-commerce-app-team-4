@@ -3,6 +3,7 @@ package org.global.ecp.hackathon.app.product;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.global.ecp.hackathon.app.product.model.Product;
 import org.springframework.stereotype.Repository;
@@ -15,19 +16,6 @@ public class ProductRepository {
     public ProductRepository() {
         products = new HashMap<>();
 
-        // TODO - Task 14: remove this method
-        populateProductsMap();
-    }
-
-    // TODO - Task 14: remove this method
-    private void populateProductsMap() {
-
-        Product product1 = new Product(1, "Product 1", "This is a description for product 1", 1.0);
-        Product product2 = new Product(2, "Product 2", "This is a description for product 2", 2.0);
-        Product product3 = new Product(3, "Product 3", "This is a description for product 3", 3.0);
-        products.put(product1.getId(), product1);
-        products.put(product2.getId(), product2);
-        products.put(product3.getId(), product3);
     }
 
     public List<Product> getAll() {
@@ -48,5 +36,16 @@ public class ProductRepository {
     public void deleteById(final Long id) {
 
         products.remove(id);
+    }
+    public void addProduct(Product product) {
+        products.put(product.getId(), product);
+    }
+
+    public boolean existsById(final Long id) {
+        return products.containsKey(id);
+    }
+
+    public boolean existsByName(String name) {
+        return products.values().stream().anyMatch(product -> product.getName().equals(name));
     }
 }
