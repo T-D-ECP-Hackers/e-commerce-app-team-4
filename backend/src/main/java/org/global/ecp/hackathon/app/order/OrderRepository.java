@@ -29,5 +29,4 @@ public class OrderRepository {
     public Order getById(UUID id) {
         return orders.get(id);
     }
-    // TODO - Task 12: implement the getById method here
 }
