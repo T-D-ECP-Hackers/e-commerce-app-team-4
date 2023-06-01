@@ -31,7 +31,8 @@ public class BasketService {
         return null;
     }
 
-    // TODO - Task 5: remove basketProduct from the basket using the basketRepository
+    // TODO - Task 5: remove basketProduct from the basket using the
+    // basketRepository
     public Basket removeFromBasket(final Long productId) {
 
         BasketProduct basketProduct = basketProductService.createBasketProduct(getBasket(), productId);
