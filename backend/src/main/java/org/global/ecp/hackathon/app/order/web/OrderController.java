@@ -44,5 +44,10 @@ public class OrderController {
         return ResponseEntity.ok(order);
     }
 
+//    @PostMapping
+//    public ResponseEntity<UUID> completeOrder(@RequestBody final OrderRequest orderRequest) {
+//
+//    }
+
     // TODO - Task 12: implement complete order method
 }

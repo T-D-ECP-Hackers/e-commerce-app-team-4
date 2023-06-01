@@ -1,8 +1,10 @@
 package org.global.ecp.hackathon.app.product.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class Product {
 
     private long id;
