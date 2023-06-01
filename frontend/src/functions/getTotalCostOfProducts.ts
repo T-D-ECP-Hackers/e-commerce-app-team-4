@@ -1,4 +1,5 @@
-import {basket} from "../model/basketType";
+import { fetchBasket } from "../api/fetchBasket";
+import { basket } from "../model/basketType";
 
 // TODO - Task 6: calculate the total cost of products in here
 //Hint: loop through all the products and add to the total cost the total sum of their price * quantity of each product
@@ -9,6 +10,7 @@ export function getTotalCostOfProducts(currentBasket: basket | null) {
     let currentProductsInBasket = currentBasket?.basketProducts;
 
     if (currentProductsInBasket != null) {
+
 
     }
     return totalCost;

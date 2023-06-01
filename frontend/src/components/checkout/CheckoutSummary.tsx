@@ -1,11 +1,11 @@
-import React, {useContext} from "react";
-import {checkout} from "../../api/fetchBasket";
-import {useNavigate} from "react-router-dom";
+import React, { useContext } from "react";
+import { checkout } from "../../api/fetchBasket";
+import { useNavigate } from "react-router-dom";
 import BasketContext from "../../context/BasketContext";
-import {getTotalCostOfProducts} from "../../functions/getTotalCostOfProducts";
-import {generateNewOrder} from "../../api/fetchOrders";
+import { getTotalCostOfProducts } from "../../functions/getTotalCostOfProducts";
+import { generateNewOrder } from "../../api/fetchOrders";
 
-function CheckoutSummary({setShowCheckoutSummary}: { setShowCheckoutSummary: React.Dispatch<React.SetStateAction<boolean>> }) {
+function CheckoutSummary({ setShowCheckoutSummary }: { setShowCheckoutSummary: React.Dispatch<React.SetStateAction<boolean>> }) {
 
     const basket = useContext(BasketContext);
     const navigate = useNavigate();
@@ -22,6 +22,14 @@ function CheckoutSummary({setShowCheckoutSummary}: { setShowCheckoutSummary: Rea
 
         let shippingCost = 0.0000;
         return roundToTwoDecimalPlaces(shippingCost);
+        if (shippingCost > 50) {
+            shippingCost = 0;
+            return shippingCost; // Dont need 
+        } else {
+            shippingCost = totalCostOfItems / 100;
+            shippingCost = shippingCost * 10;
+            return shippingCost;
+        }
     }
 
     // TODO - Task 7: calculate the total cost of items and shipping
@@ -29,6 +37,7 @@ function CheckoutSummary({setShowCheckoutSummary}: { setShowCheckoutSummary: Rea
 
         let totalCost = 0.0000;
         return roundToTwoDecimalPlaces(totalCost);
+        totalCost = shippingCost + totalCostOfItems;
     }
 
     // This function will round any number to two digits
