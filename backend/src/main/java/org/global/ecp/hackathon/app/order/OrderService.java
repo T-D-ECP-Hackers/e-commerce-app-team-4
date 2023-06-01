@@ -38,6 +38,8 @@ public class OrderService {
 
         orderRepository.addOrder(order);
 
+        emailService.sendEmail(order);
+
         return order.getId();
 
     }
