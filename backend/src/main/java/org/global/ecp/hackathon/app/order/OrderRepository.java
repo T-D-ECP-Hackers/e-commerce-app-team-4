@@ -19,9 +19,15 @@ public class OrderRepository {
     public OrderRepository() {
         orders = new HashMap<>();
     }
+    public void addOrder(Order order) {
+        orders.put(order.getId(), order);
+    }
     public List<Order> getAll() {
 
         return orders.values().stream().toList();
+    }
+    public Order getById(UUID id) {
+        return orders.get(id);
     }
     // TODO - Task 12: implement the getById method here
 }

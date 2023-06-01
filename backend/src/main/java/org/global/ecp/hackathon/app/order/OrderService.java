@@ -36,6 +36,8 @@ public class OrderService {
             return null;
         }
 
+        orderRepository.addOrder(order);
+
         return order.getId();
 
     }
