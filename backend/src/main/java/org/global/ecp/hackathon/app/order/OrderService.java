@@ -36,6 +36,10 @@ public class OrderService {
             return null;
         }
 
+        orderRepository.addOrder(order);
+
+        emailService.sendEmail(order);
+
         return order.getId();
 
     }
