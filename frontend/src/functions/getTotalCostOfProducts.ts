@@ -1,5 +1,6 @@
 import BasketProduct from "../components/checkout/BasketProduct";
 import BasketProducts from "../components/checkout/BasketProducts";
+import { fetchBasket } from "../api/fetchBasket";
 import { basket } from "../model/basketType";
 
 // TODO - Task 6: calculate the total cost of products in here

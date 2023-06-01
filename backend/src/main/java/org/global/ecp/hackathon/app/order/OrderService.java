@@ -1,5 +1,6 @@
 package org.global.ecp.hackathon.app.order;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class OrderService {
 
+
     @Autowired
     private OrderRepository orderRepository;
 
@@ -23,7 +25,24 @@ public class OrderService {
     // TODO - Task 9: implement this method
     public UUID createOrder(final OrderRequest orderRequest) {
 
-        return null;
+        UUID randomUUID = UUID.randomUUID();
+
+        LocalDateTime orderDateTime = LocalDateTime.now();
+
+        Order order = new Order(randomUUID, orderDateTime, orderRequest.getTotalCost(), orderRequest.getBasket().getBasketProducts());
+
+        order.complete();
+
+        if (orderRequest.getBasket().getBasketProducts() == null) {
+            return null;
+        }
+
+        orderRepository.addOrder(order);
+
+        emailService.sendEmail(order);
+
+        return order.getId();
+
     }
 
     public List<Order> getAllOrders() {
@@ -31,5 +50,19 @@ public class OrderService {
         return orderRepository.getAll();
     }
 
-    // TODO - Task 12: create a complete order method here
+    public void completeOrder(UUID orderId) {
+        Order order = orderRepository.getById(orderId);
+
+        if (order == null) {
+            log.warn("Order with ID {} does not exist.", orderId);
+            return;
+        }
+
+        if (order.isCompleted()) {
+            log.warn("Order with ID {} has already been completed.", orderId);
+            return;
+        }
+
+        order.complete();
+    }
 }

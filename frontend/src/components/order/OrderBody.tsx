@@ -1,9 +1,10 @@
-import React, {useContext, useEffect} from 'react';
-import {fetchBasket} from "../../api/fetchBasket";
+import React, { useContext, useEffect, useState } from 'react';
+import { fetchBasket } from "../../api/fetchBasket";
 import BasketContext from "../../context/BasketContext";
 
 function OrderBody() {
 
+    const [orders, setOrders] = useState<object[]>([]);
     const basket = useContext(BasketContext);
 
     useEffect(() => {
