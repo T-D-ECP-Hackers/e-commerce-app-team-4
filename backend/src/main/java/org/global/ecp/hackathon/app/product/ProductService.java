@@ -1,6 +1,7 @@
 package org.global.ecp.hackathon.app.product;
 
 import java.util.List;
+import java.util.UUID;
 
 import lombok.extern.slf4j.Slf4j;
 import org.global.ecp.hackathon.app.product.model.Product;
@@ -34,6 +35,25 @@ public class ProductService {
     public void deleteById(final Long id) {
 
         productRepository.deleteById(id);
+    }
+    public Product create(Product product) {
+        if (productRepository.existsById(product.getId())) {
+            throw new IllegalArgumentException("Product with the same ID already exists.");
+        }
+
+        if (productRepository.existsByName(product.getName())) {
+            throw new IllegalArgumentException("Product with the same name already exists.");
+        }
+
+        Product createdProduct = new Product();
+        createdProduct.setId(product.getId());
+        createdProduct.setName(product.getName());
+        createdProduct.setDescription(product.getDescription());
+        createdProduct.setPrice(product.getPrice());
+
+        productRepository.addProduct(createdProduct);
+
+        return createdProduct;
     }
 
 }
