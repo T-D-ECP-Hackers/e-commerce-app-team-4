@@ -37,7 +37,8 @@ public class BasketService {
         return basket;
     }
 
-    // TODO - Task 5: remove basketProduct from the basket using the basketRepository
+    // TODO - Task 5: remove basketProduct from the basket using the
+    // basketRepository
     public Basket removeFromBasket(final Long productId) {
         Basket basket = getBasket();
 
