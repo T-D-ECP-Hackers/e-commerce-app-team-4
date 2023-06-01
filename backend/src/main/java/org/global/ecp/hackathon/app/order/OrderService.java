@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class OrderService {
 
+
     @Autowired
     private OrderRepository orderRepository;
 
@@ -49,5 +50,19 @@ public class OrderService {
         return orderRepository.getAll();
     }
 
-    // TODO - Task 12: create a complete order method here
+    public void completeOrder(UUID orderId) {
+        Order order = orderRepository.getById(orderId);
+
+        if (order == null) {
+            log.warn("Order with ID {} does not exist.", orderId);
+            return;
+        }
+
+        if (order.isCompleted()) {
+            log.warn("Order with ID {} has already been completed.", orderId);
+            return;
+        }
+
+        order.complete();
+    }
 }

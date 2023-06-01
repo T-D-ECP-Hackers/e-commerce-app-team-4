@@ -3,8 +3,10 @@ package org.global.ecp.hackathon.app.basket.model;
 import java.util.List;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class Basket {
 
     private List<BasketProduct> basketProducts;
